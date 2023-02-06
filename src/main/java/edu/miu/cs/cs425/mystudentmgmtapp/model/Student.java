@@ -63,6 +63,18 @@ public class Student {
         this.classroom = classroom;
     }
 
+    public Student(Long studentId, String studentNumber, String firstName, String middleName,String lastName,
+                   Double cgpa, LocalDate dateOfEnrollment,boolean isInternalional) {
+        this.studentId = studentId;
+        this.studentNumber = studentNumber;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.cgpa = cgpa;
+        this.dateOfEnrollment = dateOfEnrollment;
+        this.isInternalional = isInternalional;
+    }
+
     public Student() {
 
     }

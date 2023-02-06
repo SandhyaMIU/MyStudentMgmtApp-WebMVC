@@ -2,7 +2,7 @@ package edu.miu.cs.cs425.mystudentmgmtapp.service;
 
 import edu.miu.cs.cs425.mystudentmgmtapp.model.Student;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface StudentService {
 
@@ -10,11 +10,18 @@ public interface StudentService {
 
     Iterable<Student> getAllStudents();
 
-    Optional<Student> getStudentById(Long studentId);
+
+    Student getStudentById(Long studentId);
 
     Student updateStudentById(Long studentId, Student editedStudent);
 
+    Student updateStudent(Student student);
+
+
     void deleteStudentById(Long studentId);
+
+    List<Student> searchStudent(String searchValue);
+
 
 
 }

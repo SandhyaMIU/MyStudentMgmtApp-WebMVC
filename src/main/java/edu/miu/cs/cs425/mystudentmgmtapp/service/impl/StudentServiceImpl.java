@@ -6,6 +6,7 @@ import edu.miu.cs.cs425.mystudentmgmtapp.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,15 +25,22 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
     }
 
+
     @Override
-    public Optional<Student> getStudentById(Long studentId) {
-        return studentRepository.findById(studentId);
+    public Student getStudentById(Long studentId) {
+//        return studentRepository.findById(studentId);
+        Optional<Student> student = studentRepository.findById(studentId);
+
+        if(student.isPresent()){
+            return student.get();
+        }
+        return null;
     }
 
     @Override
     public Student updateStudentById(Long studentId, Student editedStudent) {
 
-        var theStudent = studentRepository.findById(studentId).orElse(null);
+        Student theStudent = studentRepository.findById(studentId).orElse(null);
         Student updatedStudent = null;
         if(theStudent != null){
             theStudent.setMiddleName(editedStudent.getMiddleName());
@@ -44,9 +52,19 @@ public class StudentServiceImpl implements StudentService {
         return updatedStudent;
     }
 
+    @Override
+    public Student updateStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
 
     @Override
     public void deleteStudentById(Long studentId) {
+            studentRepository.deleteById(studentId);
+    }
 
+    @Override
+    public List<Student> searchStudent(String searchValue) {
+        return studentRepository.searchStudentByStudentNumberOrFirstNameOrLastNameOrMiddleName(searchValue, searchValue, searchValue, searchValue);
     }
 }
